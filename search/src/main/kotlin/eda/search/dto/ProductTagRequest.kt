@@ -1,6 +1,6 @@
 package eda.search.dto
 
-data class AddTagRequest(
+data class ProductTagRequest(
     val productId: Long,
     val tags: List<String>,
 )
