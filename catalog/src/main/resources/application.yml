@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: catalog
+  cassandra:
+    keyspace-name: catalog
+    port: 9042
+    contact-points: localhost
+#    contact-points: 172.17.0.2
+    local-datacenter: datacenter1
+    schema-action: create_if_not_exists
+    username: cassandra
+    password: cassandra
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/eda?useSSL=false
+    username: root
+    password: root
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false
+server:
+  port: 8085
