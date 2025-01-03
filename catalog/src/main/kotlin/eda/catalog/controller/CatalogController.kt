@@ -1,9 +1,9 @@
-package eda.catalog.cassandra.contoller
+package eda.catalog.controller
 
-import eda.catalog.cassandra.dto.DecreaseStockCountRequest
-import eda.catalog.cassandra.dto.ProductResponse
-import eda.catalog.cassandra.dto.RegisterProductRequest
-import eda.catalog.cassandra.service.CatalogService
+import eda.catalog.dto.DecreaseStockCountRequest
+import eda.catalog.dto.ProductResponse
+import eda.catalog.dto.RegisterProductRequest
+import eda.catalog.service.CatalogService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

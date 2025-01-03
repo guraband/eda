@@ -1,8 +1,8 @@
-package eda.catalog.cassandra.service
+package eda.catalog.service
 
-import eda.catalog.cassandra.dto.DecreaseStockCountRequest
-import eda.catalog.cassandra.dto.ProductResponse
-import eda.catalog.cassandra.dto.RegisterProductRequest
+import eda.catalog.dto.DecreaseStockCountRequest
+import eda.catalog.dto.ProductResponse
+import eda.catalog.dto.RegisterProductRequest
 import eda.catalog.cassandra.entity.Product
 import eda.catalog.cassandra.repository.ProductRepository
 import eda.catalog.mariadb.entity.SellerProduct

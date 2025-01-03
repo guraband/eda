@@ -1,4 +1,4 @@
-package eda.catalog.cassandra.dto
+package eda.catalog.dto
 
 import eda.catalog.cassandra.entity.Product
 
