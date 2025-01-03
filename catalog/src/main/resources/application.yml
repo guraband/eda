@@ -5,7 +5,6 @@ spring:
     keyspace-name: catalog
     port: 9042
     contact-points: localhost
-#    contact-points: 172.17.0.2
     local-datacenter: datacenter1
     schema-action: create_if_not_exists
     username: cassandra
