@@ -1,4 +1,4 @@
-package eda.order.dto
+package eda.common.dto
 
 import eda.common.enums.PaymentMethodType
 

@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.jpa") version "1.9.25"
 }
 
-group = "com.fastcampus"
+group = "eda"
 
 java {
     toolchain {

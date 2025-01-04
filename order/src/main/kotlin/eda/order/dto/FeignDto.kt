@@ -1,7 +1,5 @@
 package eda.order.dto
 
-import eda.order.enums.PaymentMethodType
-
 data class AddressResponse(
     val id: Long,
     val userId: Long,
