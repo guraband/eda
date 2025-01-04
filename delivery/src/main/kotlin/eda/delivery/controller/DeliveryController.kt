@@ -1,9 +1,9 @@
 package eda.delivery.controller
 
-import eda.delivery.dto.AddressRequest
-import eda.delivery.dto.AddressResponse
-import eda.delivery.dto.DeliveryRequest
-import eda.delivery.dto.DeliveryResponse
+import eda.common.dto.AddressRequest
+import eda.common.dto.AddressResponse
+import eda.common.dto.DeliveryRequest
+import eda.common.dto.DeliveryResponse
 import eda.delivery.service.DeliveryService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

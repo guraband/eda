@@ -1,5 +1,6 @@
 package eda.delivery.entity
 
+import eda.common.dto.AddressResponse
 import jakarta.persistence.*
 
 @Entity
@@ -15,4 +16,12 @@ class Address(
 
     val alias: String,
 ) {
+    fun toResponseDto() : AddressResponse {
+        return AddressResponse(
+            id = this.id!!,
+            userId = this.userId,
+            address = this.address,
+            alias = this.alias,
+        )
+    }
 }

@@ -1,13 +1,13 @@
 package eda.payment.service
 
+import eda.common.dto.PaymentMethodResponse
+import eda.common.dto.PaymentRequest
+import eda.common.dto.PaymentResponse
 import eda.payment.dto.PaymentMethodRequest
-import eda.payment.dto.PaymentMethodResponse
-import eda.payment.dto.PaymentRequest
-import eda.payment.dto.PaymentResponse
 import eda.payment.entity.Payment
 import eda.payment.entity.PaymentMethod
-import eda.payment.enums.PaymentMethodType
-import eda.payment.enums.PaymentStatus
+import eda.common.enums.PaymentMethodType
+import eda.common.enums.PaymentStatus
 import eda.payment.pg.CreditCardPaymentAdapter
 import eda.payment.repository.PaymentMethodRepository
 import eda.payment.repository.PaymentRepository

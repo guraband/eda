@@ -1,5 +1,6 @@
 package eda.member.entity
 
+import eda.common.dto.UserDto
 import jakarta.persistence.*
 
 @Entity
@@ -19,5 +20,13 @@ class User(
 
     fun updateName(userName: String) {
         this.name = userName
+    }
+
+    fun toUserDto() : UserDto {
+        return UserDto(
+            id = this.id!!,
+            userId = this.userId,
+            name = this.name,
+        )
     }
 }

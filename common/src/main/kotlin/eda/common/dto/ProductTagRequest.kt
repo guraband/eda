@@ -1,4 +1,4 @@
-package eda.catalog.feign.dto
+package eda.common.dto
 
 data class ProductTagRequest(
     val productId: Long,

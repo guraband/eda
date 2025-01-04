@@ -1,6 +1,6 @@
 package eda.member.service
 
-import eda.member.dto.UserDto
+import eda.common.dto.UserDto
 import eda.member.dto.UserModifyRequest
 import eda.member.dto.UserRequest
 import eda.member.entity.User
@@ -17,19 +17,19 @@ class UserService(
             userName = request.name,
         )
         userRepository.save(user)
-        return UserDto.of(user)
+        return user.toUserDto()
     }
 
     fun modifyUser(id: String, request: UserModifyRequest): UserDto {
         val user = userRepository.findByUserId(id) ?: throw IllegalArgumentException("User not found")
         user.updateName(request.name)
         userRepository.save(user)
-        return UserDto.of(user)
+        return user.toUserDto()
     }
 
     fun getUser(userId: String): UserDto {
         return userRepository.findByUserId(userId)
-            ?.let { UserDto.of(it) }
+            ?.toUserDto()
             ?: throw IllegalArgumentException("User not found")
     }
 }

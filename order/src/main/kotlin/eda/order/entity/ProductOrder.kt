@@ -1,6 +1,6 @@
 package eda.order.entity
 
-import eda.order.enums.OrderStatus
+import eda.common.enums.OrderStatus
 import jakarta.persistence.*
 
 @Entity

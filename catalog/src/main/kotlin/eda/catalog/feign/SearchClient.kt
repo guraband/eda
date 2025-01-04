@@ -1,6 +1,6 @@
 package eda.catalog.feign
 
-import eda.catalog.feign.dto.ProductTagRequest
+import eda.common.dto.ProductTagRequest
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping

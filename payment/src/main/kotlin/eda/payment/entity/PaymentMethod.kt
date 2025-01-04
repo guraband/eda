@@ -1,6 +1,6 @@
 package eda.payment.entity
 
-import eda.payment.enums.PaymentMethodType
+import eda.common.enums.PaymentMethodType
 import jakarta.persistence.*
 
 @Entity

@@ -2,13 +2,13 @@ package eda.catalog.service
 
 import eda.catalog.cassandra.entity.Product
 import eda.catalog.cassandra.repository.ProductRepository
-import eda.catalog.dto.DecreaseStockCountRequest
-import eda.catalog.dto.ProductResponse
 import eda.catalog.dto.RegisterProductRequest
 import eda.catalog.feign.SearchClient
-import eda.catalog.feign.dto.ProductTagRequest
 import eda.catalog.mariadb.entity.SellerProduct
 import eda.catalog.mariadb.repository.SellerProductRepository
+import eda.common.dto.DecreaseStockCountRequest
+import eda.common.dto.ProductResponse
+import eda.common.dto.ProductTagRequest
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -39,7 +39,7 @@ class CatalogService(
         productRepository.save(product)
         searchClient.addTagCache(ProductTagRequest(product.id, product.tags))
 
-        return ProductResponse(product)
+        return product.toResponseDto()
     }
 
     @Transactional
@@ -62,7 +62,7 @@ class CatalogService(
             .map { it.id!! }
 
         return productRepository.findAllByIdIn(productIds)
-            .map { ProductResponse(it) }
+            .map { it.toResponseDto() }
     }
 
     fun getProductById(
@@ -70,7 +70,7 @@ class CatalogService(
     ): ProductResponse {
         val product = productRepository.findById(productId)
             .orElseThrow { throw RuntimeException("Product not found") }
-        return ProductResponse(product)
+        return product.toResponseDto()
     }
 
     @Transactional
@@ -82,6 +82,6 @@ class CatalogService(
         product.decreaseStockCount(request.amount)
         productRepository.save(product)
 
-        return ProductResponse(product)
+        return product.toResponseDto()
     }
 }

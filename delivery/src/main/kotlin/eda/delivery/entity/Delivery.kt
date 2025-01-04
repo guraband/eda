@@ -1,6 +1,7 @@
 package eda.delivery.entity
 
-import eda.delivery.enums.DeliveryStatus
+import eda.common.dto.DeliveryResponse
+import eda.common.enums.DeliveryStatus
 import jakarta.persistence.*
 
 @Entity
@@ -27,10 +28,22 @@ class Delivery(
         protected set
 
     fun updateStatus() {
-        when(this.deliveryStatus) {
+        when (this.deliveryStatus) {
             DeliveryStatus.REQUESTED -> this.deliveryStatus = DeliveryStatus.IN_DELIVERY
             DeliveryStatus.IN_DELIVERY -> this.deliveryStatus = DeliveryStatus.COMPLETED
             DeliveryStatus.COMPLETED -> return
         }
+    }
+
+    fun toResponse(): DeliveryResponse {
+        return DeliveryResponse(
+            id = this.id!!,
+            orderId = this.orderId,
+            productName = this.productName,
+            productCount = this.productCount,
+            addressId = this.addressId,
+            deliveryStatus = this.deliveryStatus,
+            referenceCode = this.referenceCode,
+        )
     }
 }

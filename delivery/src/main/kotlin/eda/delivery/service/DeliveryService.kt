@@ -1,13 +1,13 @@
 package eda.delivery.service
 
+import eda.common.dto.AddressRequest
+import eda.common.dto.AddressResponse
+import eda.common.dto.DeliveryRequest
+import eda.common.dto.DeliveryResponse
+import eda.common.enums.DeliveryStatus
 import eda.delivery.dg.DeliveryAdapter
-import eda.delivery.dto.AddressRequest
-import eda.delivery.dto.AddressResponse
-import eda.delivery.dto.DeliveryRequest
-import eda.delivery.dto.DeliveryResponse
 import eda.delivery.entity.Address
 import eda.delivery.entity.Delivery
-import eda.delivery.enums.DeliveryStatus
 import eda.delivery.repository.AddressRepository
 import eda.delivery.repository.DeliveryRepository
 import org.springframework.stereotype.Service
@@ -25,7 +25,7 @@ class DeliveryService(
             alias = request.alias,
         )
         addressRepository.save(address)
-        return AddressResponse(address)
+        return address.toResponseDto()
     }
 
     fun process(request: DeliveryRequest): DeliveryResponse {
@@ -47,26 +47,25 @@ class DeliveryService(
             referenceCode = referenceCode,
         )
         deliveryRepository.save(delivery)
-        return DeliveryResponse(delivery)
+        return delivery.toResponse()
     }
 
     fun getDelivery(deliveryId: Long): DeliveryResponse {
         val delivery = deliveryRepository.findById(deliveryId)
             .orElseThrow { throw IllegalArgumentException("Delivery not found") }
-        return DeliveryResponse(delivery)
+        return delivery.toResponse()
     }
 
     fun getAddress(addressId: Long): AddressResponse {
         val address = addressRepository.findById(addressId)
             .orElseThrow { throw IllegalArgumentException("Address not found") }
-        return AddressResponse(address)
+        return address.toResponseDto()
     }
 
     fun getUserAddress(userId: Long): AddressResponse {
         return addressRepository.findAllByUserId(userId)
             .firstOrNull()
-            ?.let {
-                AddressResponse(it)
-            } ?: throw IllegalArgumentException("Address not found")
+            ?.toResponseDto()
+            ?: throw IllegalArgumentException("Address not found")
     }
 }

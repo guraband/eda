@@ -1,9 +1,9 @@
 package eda.payment.controller
 
+import eda.common.dto.PaymentMethodResponse
+import eda.common.dto.PaymentRequest
+import eda.common.dto.PaymentResponse
 import eda.payment.dto.PaymentMethodRequest
-import eda.payment.dto.PaymentMethodResponse
-import eda.payment.dto.PaymentRequest
-import eda.payment.dto.PaymentResponse
 import eda.payment.service.PaymentService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

@@ -1,4 +1,4 @@
-package eda.order.dto
+package eda.common.dto
 
 data class DecreaseStockCountRequest(
     val productId: Long,

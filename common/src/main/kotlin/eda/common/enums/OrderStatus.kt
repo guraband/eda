@@ -1,4 +1,4 @@
-package eda.order.enums
+package eda.common.enums
 
 enum class OrderStatus {
     INITIATED,

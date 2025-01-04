@@ -1,7 +1,7 @@
 package eda.order.feign
 
-import eda.order.dto.DecreaseStockCountRequest
-import eda.order.dto.ProductResponse
+import eda.common.dto.DecreaseStockCountRequest
+import eda.common.dto.ProductResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

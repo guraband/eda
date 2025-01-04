@@ -1,7 +1,6 @@
 package eda.payment.entity
 
-import eda.payment.enums.PaymentMethodType
-import eda.payment.enums.PaymentStatus
+import eda.common.enums.PaymentStatus
 import jakarta.persistence.*
 import java.time.LocalDateTime
 

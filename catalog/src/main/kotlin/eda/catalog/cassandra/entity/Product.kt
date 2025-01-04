@@ -1,5 +1,6 @@
 package eda.catalog.cassandra.entity
 
+import eda.common.dto.ProductResponse
 import org.springframework.data.cassandra.core.mapping.PrimaryKey
 import org.springframework.data.cassandra.core.mapping.Table
 
@@ -28,5 +29,17 @@ class Product(
             throw RuntimeException("Stock count cannot be negative")
         }
         _stockCount -= amount
+    }
+
+    fun toResponseDto() : ProductResponse {
+        return ProductResponse(
+            id = id,
+            sellerId = sellerId,
+            name = name,
+            description = description,
+            price = price,
+            stockCount = stockCount,
+            tags = tags
+        )
     }
 }

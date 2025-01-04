@@ -1,8 +1,8 @@
 package eda.order.feign
 
-import eda.order.dto.AddressResponse
-import eda.order.dto.DeliveryRequest
-import eda.order.dto.DeliveryResponse
+import eda.common.dto.AddressResponse
+import eda.common.dto.DeliveryRequest
+import eda.common.dto.DeliveryResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

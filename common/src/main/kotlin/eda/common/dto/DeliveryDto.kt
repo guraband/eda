@@ -1,6 +1,6 @@
-package eda.order.dto
+package eda.common.dto
 
-import eda.order.enums.DeliveryStatus
+import eda.common.enums.DeliveryStatus
 
 data class DeliveryRequest(
     val orderId: Long,

@@ -1,9 +1,9 @@
 package eda.catalog.controller
 
-import eda.catalog.dto.DecreaseStockCountRequest
-import eda.catalog.dto.ProductResponse
 import eda.catalog.dto.RegisterProductRequest
 import eda.catalog.service.CatalogService
+import eda.common.dto.DecreaseStockCountRequest
+import eda.common.dto.ProductResponse
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 

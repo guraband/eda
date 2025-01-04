@@ -1,6 +1,6 @@
 package eda.member.controller
 
-import eda.member.dto.UserDto
+import eda.common.dto.UserDto
 import eda.member.dto.UserModifyRequest
 import eda.member.dto.UserRequest
 import eda.member.service.UserService

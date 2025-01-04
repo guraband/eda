@@ -1,8 +1,8 @@
 package eda.order.feign
 
-import eda.order.dto.PaymentMethodResponse
-import eda.order.dto.PaymentRequest
-import eda.order.dto.PaymentResponse
+import eda.common.dto.PaymentMethodResponse
+import eda.common.dto.PaymentRequest
+import eda.common.dto.PaymentResponse
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable

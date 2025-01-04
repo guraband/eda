@@ -1,4 +1,4 @@
-package eda.payment.enums
+package eda.common.enums
 
 enum class PaymentStatus {
     REQUESTED,
