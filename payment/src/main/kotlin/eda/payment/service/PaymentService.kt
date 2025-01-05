@@ -31,7 +31,7 @@ class PaymentService(
 
     fun processPayment(
         request: PaymentRequest,
-    ): Payment {
+    ): PaymentResponse {
         val paymentMethod = paymentMethodRepository.findById(request.paymentMethodId)
             .orElseThrow { throw IllegalArgumentException("Payment method not found") }
 
@@ -54,7 +54,7 @@ class PaymentService(
         )
         paymentRepository.save(payment)
 
-        return payment
+        return payment.toResponseDto()
     }
 
     fun getPaymentMethod(userId: Long): PaymentMethodResponse {

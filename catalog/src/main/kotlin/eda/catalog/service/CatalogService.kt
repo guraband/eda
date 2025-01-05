@@ -33,7 +33,7 @@ class CatalogService(
             name = request.name,
             description = request.description,
             price = request.price,
-            _stockCount = request.stockCount,
+            stockCount = request.stockCount,
             tags = request.tags,
         )
         productRepository.save(product)

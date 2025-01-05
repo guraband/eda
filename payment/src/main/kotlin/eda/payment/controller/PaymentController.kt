@@ -24,9 +24,10 @@ class PaymentController(
     @PostMapping("/process")
     fun processPayment(
         @RequestBody request: PaymentRequest,
-    ): ResponseEntity<Unit> {
-        paymentService.processPayment(request)
-        return ResponseEntity.ok(Unit)
+    ): ResponseEntity<PaymentResponse> {
+        return ResponseEntity.ok(
+            paymentService.processPayment(request)
+        )
     }
 
     @GetMapping("/user/{userId}/first-method")
