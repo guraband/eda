@@ -47,13 +47,13 @@ class DeliveryService(
             referenceCode = referenceCode,
         )
         deliveryRepository.save(delivery)
-        return delivery.toResponse()
+        return delivery.toResponseDto()
     }
 
     fun getDelivery(deliveryId: Long): DeliveryResponse {
         val delivery = deliveryRepository.findById(deliveryId)
             .orElseThrow { throw IllegalArgumentException("Delivery not found") }
-        return delivery.toResponse()
+        return delivery.toResponseDto()
     }
 
     fun getAddress(addressId: Long): AddressResponse {

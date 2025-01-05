@@ -2,12 +2,13 @@ package eda.order.dto
 
 import eda.common.dto.AddressResponse
 import eda.common.dto.PaymentMethodResponse
+import eda.common.enums.OrderStatus
 
 
 data class StartOrderRequest(
     val userId: Long,
     val productId: Long,
-    val quantity: Long,
+    val quantity: Int,
 )
 
 data class StartOrderResponse(
@@ -20,4 +21,14 @@ data class FinishOrderRequest(
     val orderId: Long,
     val paymentMethodId: Long,
     val addressId: Long,
+)
+
+data class FinishOrderResponse(
+    val orderId: Long,
+    val userId: Long,
+    val productId: Long,
+    val quantity: Int,
+    val orderStatus: OrderStatus,
+    val paymentId: Long,
+    val deliveryId: Long,
 )

@@ -1,6 +1,7 @@
 package eda.order.entity
 
 import eda.common.enums.OrderStatus
+import eda.order.dto.FinishOrderResponse
 import jakarta.persistence.*
 
 @Entity
@@ -17,10 +18,34 @@ class ProductOrder(
 
     orderStatus: OrderStatus,
 
-    val paymentId: Long,
-    val deliveryId: Long,
+    paymentId: Long? = null,
+    deliveryId: Long? = null,
 ) {
     @Enumerated(EnumType.STRING)
     var orderStatus: OrderStatus = orderStatus
         protected set
+
+    var paymentId: Long? = paymentId
+        protected set
+
+    var deliveryId: Long? = deliveryId
+        protected set
+
+    fun updateOrder(paymentId: Long, deliveryId: Long, orderStatus: OrderStatus) {
+        this.paymentId = paymentId
+        this.deliveryId = deliveryId
+        this.orderStatus = orderStatus
+    }
+
+    fun toResponseDto(): FinishOrderResponse {
+        return FinishOrderResponse(
+            orderId = this.id!!,
+            userId = this.userId,
+            productId = this.productId,
+            quantity = this.quantity,
+            orderStatus = this.orderStatus,
+            paymentId = this.paymentId!!,
+            deliveryId = this.deliveryId!!,
+        )
+    }
 }

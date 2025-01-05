@@ -65,7 +65,7 @@ class PaymentService(
 
     fun getPayment(paymentId: Long): PaymentResponse {
         return paymentRepository.findById(paymentId)
-            .map { PaymentResponse(it.orderId, it.amount, it.referenceCode) }
+            .map { it.toResponseDto() }
             .orElseThrow { throw IllegalArgumentException("Payment not found") }
     }
 }

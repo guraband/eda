@@ -19,7 +19,7 @@ interface PaymentClient {
     @PostMapping("/process")
     fun processPayment(
         @RequestBody request: PaymentRequest,
-    )
+    ) : PaymentResponse
 
     @GetMapping("/{paymentId}")
     fun getPayment(

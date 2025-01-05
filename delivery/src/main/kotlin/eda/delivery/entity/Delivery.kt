@@ -35,7 +35,7 @@ class Delivery(
         }
     }
 
-    fun toResponse(): DeliveryResponse {
+    fun toResponseDto(): DeliveryResponse {
         return DeliveryResponse(
             id = this.id!!,
             orderId = this.orderId,

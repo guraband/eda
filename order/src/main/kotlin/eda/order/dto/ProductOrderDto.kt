@@ -2,7 +2,7 @@ package eda.order.dto
 
 import eda.common.enums.OrderStatus
 
-data class ProductOrderDto(
+data class ProductOrderDetailDto(
     val id: Long,
     val userId: Long,
     val productId: Long,

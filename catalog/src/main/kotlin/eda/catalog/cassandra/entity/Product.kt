@@ -17,18 +17,18 @@ class Product(
 
     val price: Long,
 
-    private var _stockCount: Int,
+    stockCount: Int,
 
     val tags: List<String>,
 ) {
-    val stockCount: Int // public read-only 프로퍼티
-        get() = _stockCount
+    var stockCount: Int = stockCount
+        protected set
 
     fun decreaseStockCount(amount: Int) {
-        if (_stockCount - amount < 0) {
+        if (this.stockCount - amount < 0) {
             throw RuntimeException("Stock count cannot be negative")
         }
-        _stockCount -= amount
+        this.stockCount -= amount
     }
 
     fun toResponseDto() : ProductResponse {

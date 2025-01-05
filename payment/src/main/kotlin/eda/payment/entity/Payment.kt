@@ -1,5 +1,6 @@
 package eda.payment.entity
 
+import eda.common.dto.PaymentResponse
 import eda.common.enums.PaymentStatus
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -28,4 +29,11 @@ class Payment(
     @Column(unique = true)
     val referenceCode: Long?,
 ) {
+    fun toResponseDto() = PaymentResponse(
+        id = id!!,
+        orderId = orderId,
+        amount = amount,
+        referenceCode = referenceCode,
+        paymentStatus = paymentStatus,
+    )
 }

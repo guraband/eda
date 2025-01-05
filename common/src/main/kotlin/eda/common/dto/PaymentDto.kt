@@ -1,6 +1,7 @@
 package eda.common.dto
 
 import eda.common.enums.PaymentMethodType
+import eda.common.enums.PaymentStatus
 
 data class PaymentMethodResponse(
     val id: Long,
@@ -16,7 +17,9 @@ data class PaymentRequest(
 )
 
 data class PaymentResponse(
+    val id: Long,
     val orderId: Long,
     val amount: Long,
     val referenceCode: Long?,
+    val paymentStatus: PaymentStatus,
 )
