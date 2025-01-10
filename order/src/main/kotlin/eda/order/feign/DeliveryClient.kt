@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 
-@FeignClient(name = "deliveryClient", url = "http://localhost:8083/v1/delivery")
+@FeignClient(name = "deliveryClient", url = "http://delivery-service/v1/delivery")
 interface DeliveryClient {
     @GetMapping("/user/{userId}/address")
     fun getAddressByUser(

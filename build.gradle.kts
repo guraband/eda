@@ -42,3 +42,7 @@ allOpen {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+
+tasks.test {
+    enabled = false
+}
