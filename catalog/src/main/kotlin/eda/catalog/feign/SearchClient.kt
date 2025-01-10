@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 
-@FeignClient(name = "searchClient", url = "http://search-service/v1/search")
+@FeignClient(name = "searchClient", url = "http://search-service:8084/v1/search")
 interface SearchClient {
     @PostMapping("/tag")
     fun addTagCache(@RequestBody request: ProductTagRequest)

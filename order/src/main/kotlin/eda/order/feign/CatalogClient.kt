@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PutMapping
 
 
-@FeignClient(name = "searchClient", url = "http://catalog-service/v1/catalog")
+@FeignClient(name = "searchClient", url = "http://catalog-service:8085/v1/catalog")
 interface CatalogClient {
     @GetMapping("/product/{productId}")
     fun getProductById(@PathVariable productId: Long): ProductResponse

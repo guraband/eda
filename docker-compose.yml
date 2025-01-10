@@ -16,30 +16,30 @@ services:
       interval: 20s
       timeout: 10s
       retries: 10
-  cassandra-node-1:
-    container_name: cassandra-node-1
-    image: cassandra
-    environment:
-      - CASSANDRA_SEEDS=cassandra-node-0
-      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
-      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-      - CASSANDRA_DC=DC1
-    ports:
-      - "17100:7000" # 노드간 클러스터 내부 통신
-      - "17001:7001" # 노드간 보안 통신
-      - "19042:9042"
-  cassandra-node-2:
-    container_name: cassandra-node-2
-    image: cassandra
-    environment:
-      - CASSANDRA_SEEDS=cassandra-node-0
-      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
-      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
-      - CASSANDRA_DC=DC1
-    ports:
-      - "27100:7000" # 노드간 클러스터 내부 통신
-      - "27001:7001" # 노드간 보안 통신
-      - "29042:9042"
+#  cassandra-node-1:
+#    container_name: cassandra-node-1
+#    image: cassandra
+#    environment:
+#      - CASSANDRA_SEEDS=cassandra-node-0
+#      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+#      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+#      - CASSANDRA_DC=DC1
+#    ports:
+#      - "17100:7000" # 노드간 클러스터 내부 통신
+#      - "17001:7001" # 노드간 보안 통신
+#      - "19042:9042"
+#  cassandra-node-2:
+#    container_name: cassandra-node-2
+#    image: cassandra
+#    environment:
+#      - CASSANDRA_SEEDS=cassandra-node-0
+#      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+#      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+#      - CASSANDRA_DC=DC1
+#    ports:
+#      - "27100:7000" # 노드간 클러스터 내부 통신
+#      - "27001:7001" # 노드간 보안 통신
+#      - "29042:9042"
 
   eda-redis:
     container_name: eda-redis
@@ -78,35 +78,35 @@ services:
     depends_on:
       - mariadb-server
 
-#  delivery-service:
-#    container_name: delivery-service
-#    image: delivery-service
-#    ports:
-#      - "8083:8083"
-#    depends_on:
-#      - mariadb-server
-#
-#  search-service:
-#    container_name: search-service
-#    image: search-service
-#    ports:
-#      - "8084:8084"
-#    depends_on:
-#      - eda-redis
-#
-#  catalog-service:
-#    container_name: catalog-service
-#    image: catalog-service
-#    ports:
-#      - "8085:8085"
-#    depends_on:
-#      - cassandra-node-0
-#      - mariadb-server
-#
-#  order-service:
-#    container_name: order-service
-#    image: order-service
-#    ports:
-#      - "8086:8086"
-#    depends_on:
-#      - mariadb-server
+  delivery-service:
+    container_name: delivery-service
+    image: delivery-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mariadb-server
+
+  search-service:
+    container_name: search-service
+    image: search-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - eda-redis
+
+  catalog-service:
+    container_name: catalog-service
+    image: catalog-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      - cassandra-node-0
+      - mariadb-server
+
+  order-service:
+    container_name: order-service
+    image: order-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mariadb-server
