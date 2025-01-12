@@ -7,8 +7,11 @@ import eda.catalog.feign.SearchClient
 import eda.catalog.mariadb.entity.SellerProduct
 import eda.catalog.mariadb.repository.SellerProductRepository
 import eda.common.dto.DecreaseStockCountRequest
+import eda.common.dto.Message
 import eda.common.dto.ProductResponse
 import eda.common.dto.ProductTagRequest
+import eda.common.enums.MessageTopic
+import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -17,6 +20,7 @@ class CatalogService(
     private val productRepository: ProductRepository,
     private val sellerProductRepository: SellerProductRepository,
     private val searchClient: SearchClient,
+    private val jsonKafkaTemplate: KafkaTemplate<String, Message>
 ) {
     @Transactional
     fun registerProduct(
@@ -37,7 +41,10 @@ class CatalogService(
             tags = request.tags,
         )
         productRepository.save(product)
-        searchClient.addTagCache(ProductTagRequest(product.id, product.tags))
+
+//        searchClient.addTagCache(ProductTagRequest(product.id, product.tags))
+
+        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_ADDED.topicName, ProductTagRequest(product.id, product.tags))
 
         return product.toResponseDto()
     }
@@ -52,7 +59,9 @@ class CatalogService(
         productRepository.deleteById(productId)
         sellerProductRepository.deleteById(productId)
 
-        searchClient.removeTagCache(ProductTagRequest(product.id, product.tags))
+//        searchClient.removeTagCache(ProductTagRequest(product.id, product.tags))
+
+        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_REMOVED.topicName, ProductTagRequest(product.id, product.tags))
     }
 
     fun findProductsBySellerId(

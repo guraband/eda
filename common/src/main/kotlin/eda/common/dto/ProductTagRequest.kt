@@ -1,6 +1,6 @@
 package eda.common.dto
 
-data class ProductTagRequest(
+class ProductTagRequest(
     val productId: Long,
     val tags: List<String>,
-)
+) : Message

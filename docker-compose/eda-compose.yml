@@ -1,3 +1,7 @@
+networks:
+  kafka-network:
+    external: true
+
 services:
   cassandra-node-0:
     container_name: cassandra-node-0  # container_name을 선언하지 않으면 prefix로 디렉토리명이 붙음
@@ -7,6 +11,8 @@ services:
       - CASSANDRA_CLUSTER_NAME=cassandra-cluster
       - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
       - CASSANDRA_DC=DC1
+#    volumes:
+#      - cassandra-data:/var/lib/cassandra
     ports:
       - "7100:7000" # 노드간 클러스터 내부 통신
       - "7001:7001" # 노드간 보안 통신
