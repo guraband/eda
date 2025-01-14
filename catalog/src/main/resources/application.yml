@@ -4,12 +4,12 @@ spring:
   cassandra:
     keyspace-name: catalog
     port: 9042
-    contact-points: cassandra-node-0
+    contact-points: cassandra-node
     local-datacenter: DC1
     schema-action: create_if_not_exists
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://mariadb-server:3306/eda?useSSL=false
+    url: jdbc:mariadb://host.docker.internal:3306/eda?useSSL=false
     username: root
     password: root
   jpa:

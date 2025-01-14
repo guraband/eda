@@ -3,7 +3,7 @@ spring:
     name: order
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://mariadb-server:3306/eda?useSSL=false
+    url: jdbc:mariadb://host.docker.internal:3306/eda?useSSL=false
     username: root
     password: root
   jpa:

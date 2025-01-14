@@ -1,13 +1,24 @@
+# docker 관련
+```shell
+# null 이미지 일괄 삭제
+docker images -f "dangling=true" -q | xargs -I {} docker rmi {}
+
 # docker 네트워크 생성
 docker network create kafka-network
+docker network create cassandra-network
 
 # Kafka 실행
 docker compose -p kafka -f kafka-compose.yml up -d
 docker compose -p kafka -f kafka-compose.yml down
 
+# Cassandra 실행
+docker compose -p cassandra -f cassandra-compose.yml up -d
+docker compose -p cassandra -f cassandra-compose.yml down
+
 # Spring Boot 실행
 docker compose -p eda -f eda-compose.yml up -d
 docker compose -p eda -f eda-compose.yml down
+```
 
 # Kafka 관련
 ```bash
