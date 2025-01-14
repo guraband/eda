@@ -1,0 +1,24 @@
+services:
+  cassandra-node:
+    container_name: cassandra-node
+    image: cassandra
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node # 단일 노드로 설정
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    networks:
+      - cassandra-network
+    ports:
+      - "9042:9042"
+    volumes:
+      - ./data/cassandra-node:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status | grep -q 'UN'"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+
+networks:
+  cassandra-network:
+    external: true

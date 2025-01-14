@@ -1,0 +1,59 @@
+services:
+  cassandra-node-0:
+    container_name: cassandra-node-0  # container_name을 선언하지 않으면 prefix로 디렉토리명이 붙음
+    image: cassandra
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node-0
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    ports:
+      - "7100:7000" # 노드간 클러스터 내부 통신
+      - "7001:7001" # 노드간 보안 통신
+      - "9042:9042"
+    networks:
+      - cassandra-network
+    volumes:
+      - ./data/cassandra-node-0:/var/lib/cassandra
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+  cassandra-node-1:
+    container_name: cassandra-node-1
+    image: cassandra
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node-0
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    ports:
+      - "17100:7000" # 노드간 클러스터 내부 통신
+      - "17001:7001" # 노드간 보안 통신
+      - "19042:9042"
+    networks:
+      - cassandra-network
+    volumes:
+      - ./data/cassandra-node-1:/var/lib/cassandra
+
+  cassandra-node-2:
+    container_name: cassandra-node-2
+    image: cassandra
+    environment:
+      - CASSANDRA_SEEDS=cassandra-node-0
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=DC1
+    ports:
+      - "27100:7000" # 노드간 클러스터 내부 통신
+      - "27001:7001" # 노드간 보안 통신
+      - "29042:9042"
+    networks:
+      - cassandra-network
+    volumes:
+      - ./data/cassandra-node-2:/var/lib/cassandra
+
+networks:
+  cassandra-network:
+    external: true
