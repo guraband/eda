@@ -1,8 +1,6 @@
 networks:
   kafka-network:
     external: true
-  cassandra-network:
-    external: true
 
 services:
   member-service:
@@ -35,7 +33,6 @@ services:
     ports:
       - "8085:8085"
     networks:
-      - cassandra-network
       - kafka-network
 
   order-service:

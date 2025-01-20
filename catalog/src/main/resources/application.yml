@@ -1,17 +1,17 @@
 spring:
   application:
     name: catalog
-  cassandra:
-    keyspace-name: catalog
-    port: 9042
-    contact-points: cassandra-node
-    local-datacenter: DC1
-    schema-action: create_if_not_exists
+  config:
+    import: classpath:.env[.properties]
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://host.docker.internal:3306/eda?useSSL=false
-    username: root
-    password: root
+    username: ${MARIADB_USERNAME}
+    password: ${MARIADB_PASSWORD}
+  data:
+    mongodb:
+      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}
+      database: eda
   jpa:
     generate-ddl: true
     hibernate:

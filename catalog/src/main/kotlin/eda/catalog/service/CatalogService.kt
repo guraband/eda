@@ -1,11 +1,10 @@
 package eda.catalog.service
 
-import eda.catalog.cassandra.entity.Product
-import eda.catalog.cassandra.repository.ProductRepository
 import eda.catalog.dto.RegisterProductRequest
-import eda.catalog.feign.SearchClient
 import eda.catalog.mariadb.entity.SellerProduct
 import eda.catalog.mariadb.repository.SellerProductRepository
+import eda.catalog.mondodb.entity.Product
+import eda.catalog.mondodb.repository.ProductRepository
 import eda.common.dto.DecreaseStockCountRequest
 import eda.common.dto.Message
 import eda.common.dto.ProductResponse
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional
 class CatalogService(
     private val productRepository: ProductRepository,
     private val sellerProductRepository: SellerProductRepository,
-    private val searchClient: SearchClient,
     private val jsonKafkaTemplate: KafkaTemplate<String, Message>
 ) {
     @Transactional

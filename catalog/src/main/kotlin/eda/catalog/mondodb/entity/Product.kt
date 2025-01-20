@@ -1,12 +1,12 @@
-package eda.catalog.cassandra.entity
+package eda.catalog.mondodb.entity
 
 import eda.common.dto.ProductResponse
-import org.springframework.data.cassandra.core.mapping.PrimaryKey
-import org.springframework.data.cassandra.core.mapping.Table
+import jakarta.persistence.Id
+import org.springframework.data.mongodb.core.mapping.Document
 
-@Table
+@Document(collection = "product")
 class Product(
-    @PrimaryKey
+    @Id
     val id: Long,
 
     val sellerId: Long,
