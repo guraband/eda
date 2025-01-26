@@ -1,6 +1,6 @@
 package eda.search.service
 
-import eda.search.dto.ProductTagRequest
+import eda.common.dto.ProductTagRequest
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Service
 

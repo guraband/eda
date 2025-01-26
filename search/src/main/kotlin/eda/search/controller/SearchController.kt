@@ -1,6 +1,6 @@
 package eda.search.controller
 
-import eda.search.dto.ProductTagRequest
+import eda.common.dto.ProductTagRequest
 import eda.search.service.SearchService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*

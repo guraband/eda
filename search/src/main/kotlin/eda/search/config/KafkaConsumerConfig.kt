@@ -1,9 +1,9 @@
-package fastcampus.kafka.config
+package eda.search.config
 
-import fastcampus.kafka.dto.Message
+import eda.common.dto.Message
 import org.apache.kafka.clients.consumer.ConsumerConfig
 import org.apache.kafka.common.serialization.StringDeserializer
-import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.kafka.annotation.EnableKafka
@@ -12,40 +12,28 @@ import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 import org.springframework.kafka.support.serializer.JsonDeserializer
 
+
+@Configuration
+@ConfigurationProperties(prefix = "spring.kafka")
+class KafkaProperties {
+    lateinit var bootstrapServers: List<String>
+    lateinit var consumer: ConsumerProperties
+
+    class ConsumerProperties {
+        lateinit var groupId: String
+    }
+}
+
 @EnableKafka
 @Configuration
-class KafkaConsumerConfig {
-    @Value("\${spring.kafka.bootstrap-servers}")
-    lateinit var kafkaHost: String
-
-    companion object {
-        const val GROUP_ID = "group1"
-    }
-
-    @Bean
-    fun consumerFactory(): ConsumerFactory<String, String> {
-        val config = mapOf(
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaHost,
-            ConsumerConfig.GROUP_ID_CONFIG to GROUP_ID,
-            ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java.name,
-            ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java.name,
-            ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
-        )
-
-        return DefaultKafkaConsumerFactory(config)
-    }
-
-    @Bean
-    fun kafkaListenerContainerFactory(): ConcurrentKafkaListenerContainerFactory<String, String> {
-        return ConcurrentKafkaListenerContainerFactory<String, String>()
-            .also { it.consumerFactory = consumerFactory() }
-    }
-
+class KafkaConsumerConfig(
+    private val kafkaProperties: KafkaProperties,
+) {
     @Bean
     fun jsonConsumerFactory(): ConsumerFactory<String, Message> {
         val config = mapOf(
-            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaHost,
-            ConsumerConfig.GROUP_ID_CONFIG to GROUP_ID,
+            ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG to kafkaProperties.bootstrapServers,
+            ConsumerConfig.GROUP_ID_CONFIG to kafkaProperties.consumer.groupId,
             ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG to StringDeserializer::class.java,
             ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG to JsonDeserializer::class.java,
             ConsumerConfig.AUTO_OFFSET_RESET_CONFIG to "earliest",
