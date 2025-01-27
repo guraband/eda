@@ -1,4 +1,4 @@
-package eda.search.config
+package eda.delivery.config
 
 import eda.common.dto.message.Message
 import org.apache.kafka.clients.consumer.ConsumerConfig
@@ -11,7 +11,6 @@ import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory
 import org.springframework.kafka.core.ConsumerFactory
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory
 import org.springframework.kafka.support.serializer.JsonDeserializer
-
 
 @Configuration
 @ConfigurationProperties(prefix = "spring.kafka")

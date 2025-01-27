@@ -1,4 +1,4 @@
-package eda.search.config
+package eda.payment.config
 
 import eda.common.dto.message.Message
 import org.apache.kafka.clients.consumer.ConsumerConfig

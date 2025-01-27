@@ -6,9 +6,9 @@ import eda.catalog.mariadb.repository.SellerProductRepository
 import eda.catalog.mondodb.entity.Product
 import eda.catalog.mondodb.repository.ProductRepository
 import eda.common.dto.DecreaseStockCountRequest
-import eda.common.dto.Message
+import eda.common.dto.message.Message
 import eda.common.dto.ProductResponse
-import eda.common.dto.ProductTagRequest
+import eda.common.dto.message.ProductTagMessage
 import eda.common.enums.MessageTopic
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Service
@@ -42,7 +42,7 @@ class CatalogService(
 
 //        searchClient.addTagCache(ProductTagRequest(product.id, product.tags))
 
-        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_ADDED.topicName, ProductTagRequest(product.id, product.tags))
+        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_ADDED.topicName, ProductTagMessage(product.id, product.tags))
 
         return product.toResponseDto()
     }
@@ -59,7 +59,7 @@ class CatalogService(
 
 //        searchClient.removeTagCache(ProductTagRequest(product.id, product.tags))
 
-        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_REMOVED.topicName, ProductTagRequest(product.id, product.tags))
+        jsonKafkaTemplate.send(MessageTopic.PRODUCT_TAGS_REMOVED.topicName, ProductTagMessage(product.id, product.tags))
     }
 
     fun findProductsBySellerId(

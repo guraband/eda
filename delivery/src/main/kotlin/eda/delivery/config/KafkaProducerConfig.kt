@@ -1,4 +1,4 @@
-package eda.catalog.config
+package eda.delivery.config
 
 import eda.common.dto.message.Message
 import org.apache.kafka.clients.producer.ProducerConfig
@@ -10,12 +10,6 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.kafka.core.ProducerFactory
 import org.springframework.kafka.support.serializer.JsonSerializer
-
-@Configuration
-@ConfigurationProperties(prefix = "spring.kafka")
-class KafkaProperties {
-    lateinit var bootstrapServers: List<String>
-}
 
 @Configuration
 class KafkaProducerConfig(

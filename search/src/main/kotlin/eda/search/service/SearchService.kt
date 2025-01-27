@@ -1,6 +1,6 @@
 package eda.search.service
 
-import eda.common.dto.ProductTagRequest
+import eda.common.dto.message.ProductTagMessage
 import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.stereotype.Service
 
@@ -9,7 +9,7 @@ class SearchService(
     private val stringRedisTemplate: RedisTemplate<String, String>
 ) {
     fun addTagCache(
-        request: ProductTagRequest,
+        request: ProductTagMessage,
     ) {
         val ops = stringRedisTemplate.opsForSet()
         request.tags.forEach { tag ->
@@ -18,7 +18,7 @@ class SearchService(
     }
 
     fun removeTagCache(
-        request: ProductTagRequest,
+        request: ProductTagMessage,
     ) {
         val ops = stringRedisTemplate.opsForSet()
         request.tags.forEach { tag ->
