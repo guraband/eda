@@ -4,4 +4,6 @@ WORKDIR /app
 
 COPY build/libs/catalog.jar /app/app.jar
 
+COPY src/main/resources/.env /app/.env
+
 CMD ["java", "-jar", "app.jar"]
