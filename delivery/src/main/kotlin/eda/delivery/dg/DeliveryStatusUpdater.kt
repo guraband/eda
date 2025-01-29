@@ -25,10 +25,11 @@ class DeliveryStatusUpdater(
 
     private fun publishStatusUpdate(delivery: Delivery) {
         val message = DeliveryStatusUpdateMessage(
+            id = delivery.id!!,
             orderId = delivery.orderId,
             productName = delivery.productName,
             productCount = delivery.productCount,
-            addressId = delivery.addressId,
+            address = delivery.address,
             deliveryStatus = delivery.deliveryStatus,
             referenceCode = delivery.referenceCode,
         )

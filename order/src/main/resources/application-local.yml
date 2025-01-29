@@ -12,5 +12,18 @@ spring:
       ddl-auto: update
     show-sql: true
     open-in-view: false
+  kafka:
+    bootstrap-servers:
+      - localhost:19092
+      - localhost:19093
+      - localhost:19094
+    consumer:
+      group-id: eda-group1
+#      auto-offset-reset: earliest
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
 server:
   port: 8086

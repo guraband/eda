@@ -20,6 +20,7 @@ class ProductOrder(
 
     paymentId: Long? = null,
     deliveryId: Long? = null,
+    deliveryAddress: String? = null,
 ) {
     @Enumerated(EnumType.STRING)
     var orderStatus: OrderStatus = orderStatus
@@ -31,10 +32,19 @@ class ProductOrder(
     var deliveryId: Long? = deliveryId
         protected set
 
-    fun updateOrder(paymentId: Long, deliveryId: Long, orderStatus: OrderStatus) {
-        this.paymentId = paymentId
-        this.deliveryId = deliveryId
-        this.orderStatus = orderStatus
+    var deliveryAddress: String? = deliveryAddress
+        protected set
+
+    fun updateOrder(
+        paymentId: Long? = null,
+        deliveryId: Long? = null,
+        deliveryAddress: String? = null,
+        orderStatus: OrderStatus? = null,
+    ) {
+        paymentId?.let { this.paymentId = it }
+        deliveryId?.let { this.deliveryId = it }
+        deliveryAddress?.let { this.deliveryAddress = it }
+        orderStatus?.let { this.orderStatus = it }
     }
 
     fun toResponseDto(): FinishOrderResponse {

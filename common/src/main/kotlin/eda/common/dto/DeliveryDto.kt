@@ -6,7 +6,8 @@ data class DeliveryRequest(
     val orderId: Long,
     val productName: String,
     val productCount: Int,
-    val addressId: Long,
+    val deliveryId: Long,
+    val address: String,
 )
 
 data class DeliveryResponse(
@@ -14,7 +15,7 @@ data class DeliveryResponse(
     val orderId: Long,
     val productName: String,
     val productCount: Int,
-    val addressId: Long,
+    val address: String,
     val deliveryStatus: DeliveryStatus,
     val referenceCode: Long,
 )

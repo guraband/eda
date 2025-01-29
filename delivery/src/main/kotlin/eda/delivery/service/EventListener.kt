@@ -26,15 +26,17 @@ class EventListener(
                 orderId = message.orderId,
                 productName = message.productName,
                 productCount = message.productCount,
-                addressId = message.addressId,
+                deliveryId = message.deliveryId,
+                address = message.address,
             )
         )
 
         val deliveryStatusUpdateMessage = DeliveryStatusUpdateMessage(
+            id = deliveryResponse.id,
             orderId = deliveryResponse.orderId,
             productName = deliveryResponse.productName,
             productCount = deliveryResponse.productCount,
-            addressId = deliveryResponse.addressId,
+            address = deliveryResponse.address,
             deliveryStatus = deliveryResponse.deliveryStatus,
             referenceCode = deliveryResponse.referenceCode,
         )

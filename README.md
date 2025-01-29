@@ -16,8 +16,8 @@ docker compose -p cassandra -f cassandra-compose.yml up -d
 docker compose -p cassandra -f cassandra-compose.yml down
 
 # Spring Boot 실행
-docker compose -p eda -f eda-compose.yml up -d
-docker compose -p eda -f eda-compose.yml down
+docker compose -p eda -f ./docker-compose/eda-compose.yml up -d
+docker compose -p eda -f ./docker-compose/eda-compose.yml down
 ```
 
 # Kafka 관련
@@ -39,7 +39,8 @@ docker exec -it kafka1 kafka-topics --create \
   --bootstrap-server localhost:9092 \
   --replication-factor 3 \
   --partitions 1 \
-  --topic product_tags_removed
+  --topic delivery_request
+
 
 # 토픽 조회
 docker exec -it kafka1 kafka-topics --list --bootstrap-server localhost:9092

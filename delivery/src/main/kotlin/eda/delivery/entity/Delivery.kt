@@ -17,7 +17,7 @@ class Delivery(
 
     val productCount: Int,
 
-    val addressId: Long,
+    val address: String,
 
     deliveryStatus: DeliveryStatus,
 
@@ -41,7 +41,7 @@ class Delivery(
             orderId = this.orderId,
             productName = this.productName,
             productCount = this.productCount,
-            addressId = this.addressId,
+            address = this.address,
             deliveryStatus = this.deliveryStatus,
             referenceCode = this.referenceCode,
         )

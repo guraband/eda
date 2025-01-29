@@ -29,11 +29,8 @@ class DeliveryService(
     }
 
     fun process(request: DeliveryRequest): DeliveryResponse {
-        val address = addressRepository.findById(request.addressId)
-            .orElseThrow { throw IllegalArgumentException("Address not found") }
-
         val referenceCode = deliveryAdapter.processDelivery(
-            address = address.address,
+            address = request.address,
             productName = request.productName,
             productCount = request.productCount,
         )
@@ -42,7 +39,7 @@ class DeliveryService(
             orderId = request.orderId,
             productName = request.productName,
             productCount = request.productCount,
-            addressId = request.addressId,
+            address = request.address,
             deliveryStatus = DeliveryStatus.REQUESTED,
             referenceCode = referenceCode,
         )
