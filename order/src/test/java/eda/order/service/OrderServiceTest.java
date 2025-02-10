@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
+import org.springframework.test.context.bean.override.mockito.MockitoSpyBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,25 +26,25 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
-@Import(OrderService.class)
+@Import({OrderService.class})
 public class OrderServiceTest {
 
     @Autowired
     OrderService orderService;
 
-    @SpyBean
+    @MockitoSpyBean
     OrderRepository orderRepository;
 
-    @MockBean
+    @MockitoBean
     PaymentClient paymentClient;
 
-    @MockBean
+    @MockitoBean
     DeliveryClient deliveryClient;
 
-    @MockBean
+    @MockitoBean
     CatalogClient catalogClient;
 
-    @MockBean
+    @MockitoBean
     KafkaTemplate<String, Message> kafkaTemplate;
 
     @Test
