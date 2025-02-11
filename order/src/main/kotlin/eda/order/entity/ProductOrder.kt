@@ -56,6 +56,7 @@ class ProductOrder(
             orderStatus = this.orderStatus,
             paymentId = this.paymentId!!,
             deliveryId = this.deliveryId!!,
+            deliveryAddress = this.deliveryAddress!!,
         )
     }
 }

@@ -31,4 +31,5 @@ data class FinishOrderResponse(
     val orderStatus: OrderStatus,
     val paymentId: Long,
     val deliveryId: Long,
+    val deliveryAddress: String,
 )
