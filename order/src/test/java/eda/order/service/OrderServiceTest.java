@@ -8,6 +8,7 @@ import eda.common.enums.MessageTopic;
 import eda.common.enums.OrderStatus;
 import eda.common.enums.PaymentMethodType;
 import eda.order.dto.FinishOrderRequest;
+import eda.order.dto.FinishOrderResponse;
 import eda.order.dto.StartOrderRequest;
 import eda.order.entity.ProductOrder;
 import eda.order.feign.CatalogClient;
@@ -26,6 +27,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.*;
@@ -134,5 +136,44 @@ public class OrderServiceTest {
         verify(kafkaTemplate, times(1))
                 .send(eq(MessageTopic.PAYMENT_REQUEST.getTopicName()),
                         any(Message.class));
+    }
+
+    @Test
+    void getUserOrdersTest() {
+        // given
+        var userId = 1L;
+        var order1 = new ProductOrder(
+                null,
+                userId,
+                100L,
+                1,
+                OrderStatus.INITIATED,
+                1L,
+                1L,
+                "서울 강남구"
+        );
+
+        var order2 = new ProductOrder(
+                null,
+                userId,
+                200L,
+                1,
+                OrderStatus.INITIATED,
+                1L,
+                1L,
+                "서울 강남구"
+        );
+
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+
+        // when
+        var orders = orderService.getUserOrders(userId);
+        var productIds = orders.stream().map(FinishOrderResponse::getProductId).toList();
+
+        // then
+        assertEquals(2, orders.size());
+        // productIds 의 순서와 상관 없이 productId 비교
+        assertThat(productIds).containsExactlyInAnyOrder(100L, 200L);
     }
 }
